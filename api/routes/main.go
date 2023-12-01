@@ -11,6 +11,8 @@ import (
 func AppRoutes(router *gin.Engine, dbQueries *db.Queries) *gin.RouterGroup {
 	todoController := controllers.NewTodoController(dbQueries)
 
+	router.Use(middleware.HandleError())
+
 	v1 := router.Group("/v1")
 	{
 		todos := v1.Group("")

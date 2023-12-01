@@ -24,10 +24,10 @@ func init() {
 	dbUrl := os.Getenv("DATABASE_URL")
 
 	dbcon, err := sql.Open(dbDriver, dbUrl)
+
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer dbcon.Close()
 
 	if err := dbcon.Ping(); err != nil {
 		log.Fatal(err)
