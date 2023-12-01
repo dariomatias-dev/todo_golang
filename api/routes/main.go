@@ -3,8 +3,9 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/darionatias-dev/todo_golang/api/controllers"
-	db "github.com/darionatias-dev/todo_golang/api/db/sqlc"
+	"github.com/dariomatias-dev/todo_golang/api/controllers"
+	db "github.com/dariomatias-dev/todo_golang/api/db/sqlc"
+	"github.com/dariomatias-dev/todo_golang/api/middlewares"
 )
 
 func AppRoutes(router *gin.Engine, dbQueries *db.Queries) *gin.RouterGroup {
@@ -14,12 +15,34 @@ func AppRoutes(router *gin.Engine, dbQueries *db.Queries) *gin.RouterGroup {
 	{
 		todos := v1.Group("")
 		{
-			todos.POST("/todo", todoController.Create)
-			todos.GET("/todo/:id", todoController.GetOne)
-			todos.GET("/todos", todoController.GetAll)
-			todos.PATCH("/todo/:id", todoController.Update)
-			todos.PATCH("/todo-status/:id", todoController.UpdateStatus)
-			todos.DELETE("/todo/:id", todoController.Delete)
+			todos.POST(
+				"/todo",
+				todoController.Create,
+			)
+			todos.GET(
+				"/todo/:id",
+				middleware.ValidUUIDMiddlware,
+				todoController.GetOne,
+			)
+			todos.GET(
+				"/todos",
+				todoController.GetAll,
+			)
+			todos.PATCH(
+				"/todo/:id",
+				middleware.ValidUUIDMiddlware,
+				todoController.Update,
+			)
+			todos.PATCH(
+				"/todo-status/:id",
+				middleware.ValidUUIDMiddlware,
+				todoController.UpdateStatus,
+			)
+			todos.DELETE(
+				"/todo/:id",
+				middleware.ValidUUIDMiddlware,
+				todoController.Delete,
+			)
 		}
 	}
 

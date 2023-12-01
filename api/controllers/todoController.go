@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 
-	db "github.com/darionatias-dev/todo_golang/api/db/sqlc"
+	db "github.com/dariomatias-dev/todo_golang/api/db/sqlc"
 )
 
 type todoController struct {

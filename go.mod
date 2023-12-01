@@ -1,8 +1,10 @@
-module github.com/darionatias-dev/todo_golang
+module github.com/dariomatias-dev/todo_golang
 
 go 1.21.4
 
 require github.com/gin-gonic/gin v1.9.1
+
+require github.com/google/uuid v1.4.0 // indirect
 
 require (
 	github.com/bytedance/sonic v1.9.1 // indirect
