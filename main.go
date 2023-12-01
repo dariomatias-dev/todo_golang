@@ -10,6 +10,7 @@ import (
 	_ "github.com/lib/pq"
 
 	db "github.com/darionatias-dev/todo_golang/api/db/sqlc"
+	"github.com/darionatias-dev/todo_golang/api/routes"
 )
 
 var dbQueries *db.Queries
@@ -26,10 +27,10 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	dbcon.Close()
+	defer dbcon.Close()
 
 	if err := dbcon.Ping(); err != nil {
-		log.Fatal(dbcon)
+		log.Fatal(err)
 	}
 
 	dbQueries = db.New(dbcon)
@@ -37,6 +38,8 @@ func init() {
 
 func main() {
 	app := gin.Default()
+
+	routes.AppRoutes(app, dbQueries)
 
 	if err := app.Run("localhost:3001"); err != nil {
 		log.Fatal(err)
