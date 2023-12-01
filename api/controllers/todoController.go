@@ -68,6 +68,30 @@ func (tc *todoController) FindAll(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, todos)
 }
 
+func (tc *todoController) UpdateStatus(ctx *gin.Context) {
+	ID := ctx.Param("id")
+
+	data := models.UpdateTodoStatus{}
+
+	if err := ctx.ShouldBindJSON(&data); err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, err.Error())
+		return
+	}
+
+	arg := db.UpdateTodoStatusParams{
+		ID:     ID,
+		Status: *data.Status,
+	}
+
+	todo, err := tc.DbQueries.UpdateTodoStatus(ctx, arg)
+
+	if err != nil {
+		panic(err)
+	}
+
+	ctx.JSON(http.StatusOK, todo)
+}
+
 func (tc *todoController) Update(ctx *gin.Context) {
 	ID := ctx.Param("id")
 
@@ -88,30 +112,6 @@ func (tc *todoController) Update(ctx *gin.Context) {
 	}
 
 	todo, err := tc.DbQueries.UpdateTodo(ctx, arg)
-
-	if err != nil {
-		panic(err)
-	}
-
-	ctx.JSON(http.StatusOK, todo)
-}
-
-func (tc *todoController) UpdateStatus(ctx *gin.Context) {
-	ID := ctx.Param("id")
-
-	data := models.UpdateTodoStatus{}
-
-	if err := ctx.ShouldBindJSON(&data); err != nil {
-		ctx.AbortWithStatusJSON(http.StatusBadRequest, err.Error())
-		return
-	}
-
-	arg := db.UpdateTodoStatusParams{
-		ID:     ID,
-		Status: *data.Status,
-	}
-
-	todo, err := tc.DbQueries.UpdateTodoStatus(ctx, arg)
 
 	if err != nil {
 		panic(err)

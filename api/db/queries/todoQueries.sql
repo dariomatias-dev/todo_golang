@@ -12,6 +12,10 @@ SELECT * FROM "todos" WHERE id = $1;
 
 SELECT * FROM "todos";
 
+-- name: UpdateTodoStatus :one
+
+UPDATE "todos" SET status = $2 WHERE id = $1 RETURNING *;
+
 -- name: UpdateTodo :one
 
 UPDATE "todos"
@@ -24,10 +28,6 @@ SET
     status = COALESCE(sqlc.narg('status'), status),
     updated_at = CURRENT_TIMESTAMP
 WHERE id = $1 RETURNING *;
-
--- name: UpdateTodoStatus :one
-
-UPDATE "todos" SET status = $2 WHERE id = $1 RETURNING *;
 
 -- name: DeleteTodo :one
 

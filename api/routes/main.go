@@ -31,14 +31,14 @@ func AppRoutes(router *gin.Engine, dbQueries *db.Queries) *gin.RouterGroup {
 				todoController.FindAll,
 			)
 			todos.PATCH(
-				"/todo/:id",
-				middleware.ValidUUIDMiddlware,
-				todoController.Update,
-			)
-			todos.PATCH(
 				"/todo-status/:id",
 				middleware.ValidUUIDMiddlware,
 				todoController.UpdateStatus,
+			)
+			todos.PATCH(
+				"/todo/:id",
+				middleware.ValidUUIDMiddlware,
+				todoController.Update,
 			)
 			todos.DELETE(
 				"/todo/:id",
