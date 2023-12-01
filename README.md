@@ -1,6 +1,6 @@
 # API de lista de tarefas feita em Golang
 
-Bem-vindo à TaskList API, uma aplicação de lista de tarefas construída em Go utilizando os frameworks Gin para a camada web, SQLC para acesso ao banco de dados e Docker para facilitar a execução e implantação.
+Bem-vindo à To-Do API, uma aplicação de lista de tarefas construída em Go utilizando os frameworks Gin para a camada Web, SQLC para acesso ao banco de dados e Docker para a execução do banco de dados.
 
 ## Tecnologias usadas
 
