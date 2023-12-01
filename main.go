@@ -5,7 +5,9 @@ import (
 	"log"
 	"os"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 
 	db "github.com/darionatias-dev/todo_golang/api/db/sqlc"
 )
@@ -33,4 +35,10 @@ func init() {
 	dbQueries = db.New(dbcon)
 }
 
-func main() {}
+func main() {
+	app := gin.Default()
+
+	if err := app.Run("localhost:3001"); err != nil {
+		log.Fatal(err)
+	}
+}
