@@ -24,11 +24,11 @@ func AppRoutes(router *gin.Engine, dbQueries *db.Queries) *gin.RouterGroup {
 			todos.GET(
 				"/todo/:id",
 				middleware.ValidUUIDMiddlware,
-				todoController.GetOne,
+				todoController.FindOne,
 			)
 			todos.GET(
 				"/todos",
-				todoController.GetAll,
+				todoController.FindAll,
 			)
 			todos.PATCH(
 				"/todo/:id",

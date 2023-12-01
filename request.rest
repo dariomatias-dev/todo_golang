@@ -1,0 +1,33 @@
+### Variables
+@apiurl = http://localhost:3001/v1
+
+### CREATE todo
+POST {{apiurl}}/todo
+
+{
+    "title": "Estudar programação",
+    "description": "Criar projetos com Golang"
+}
+
+### GET todo/:id
+GET {{apiurl}}/todo/9cf52d0f-fcbf-45ad-a3bd-4ce6eeebab52
+
+### GET todos
+GET {{apiurl}}/todos
+
+### UPDATE todo/:id
+PATCH {{apiurl}}/todo/9cf52d0f-fcbf-45ad-a3bd-4ce6eeebab52
+
+{
+    "description": "Criar projetos com NextJS"
+}
+
+### UPDATE todo-status/:id
+PATCH {{apiurl}}/todo-status/afeb516a-8110-429f-ad01-0e7c9918ac07
+
+{
+    "status": true
+}
+
+### DELETE todo/:id
+DELETE {{apiurl}}/todo/171478c2-a1f2-451c-87e2-8f3d733681ed
