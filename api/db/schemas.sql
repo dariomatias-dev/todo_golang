@@ -1,0 +1,9 @@
+CREATE TABLE
+    IF NOT EXISTS "todos" (
+        id VARCHAR(36) PRIMARY KEY,
+        title VARCHAR(100) NOT NULL,
+        description TEXT NOT NULL,
+        status BOOLEAN DEFAULT FALSE NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    )
